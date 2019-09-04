@@ -59,8 +59,8 @@ func TestSubscribeAddress_ABBC(t *testing.T) {
 		endRunning = make(chan bool, 1)
 		symbol     = "ABBC"
 		addrs      = map[string]string{
-			"coinbeneabbc": "sender",
-			"degreeperson": "receiver",
+			"productcurve": "sender",
+			"abbcopenwtes": "receiver",
 		}
 	)
 
@@ -96,7 +96,7 @@ func TestSubscribeAddress_ABBC(t *testing.T) {
 
 	//log.Debug("already got scanner:", assetsMgr)
 	scanner := assetsMgr.GetBlockScanner()
-	//scanner.SetRescanBlockHeight(7305480)
+	scanner.SetRescanBlockHeight(7353930)
 
 	if scanner == nil {
 		log.Error(symbol, "is not support block scan")
@@ -107,14 +107,6 @@ func TestSubscribeAddress_ABBC(t *testing.T) {
 
 	sub := subscriberSingle{}
 	scanner.AddObserver(&sub)
-
-	header, err := scanner.GetCurrentBlockHeader()
-	if err != nil {
-		t.Errorf("GetCurrentBlockHeader failed: %v", err)
-		return
-	}
-
-	log.Infof("GetCurrentBlockHeader = %+v", header)
 
 	scanner.Run()
 

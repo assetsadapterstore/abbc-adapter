@@ -31,5 +31,12 @@ func NewWalletManager(cacheManager openwallet.ICacheManager) *WalletManager {
 	wm.Config = eosio.NewConfig(Symbol)
 	wm.Decoder = NewAddressDecoder(&wm)
 	wm.Log = log.NewOWLogger(wm.Symbol())
+
+	//扫描器监控的交易操作
+	wm.Blockscanner.MonitorActions = map[string]bool{
+		"transfer": true,
+		"transferx": true,
+	}
+
 	return &wm
 }

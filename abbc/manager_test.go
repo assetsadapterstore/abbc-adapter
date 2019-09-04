@@ -43,6 +43,7 @@ func testNewWalletManager() *WalletManager {
 		panic(err)
 	}
 	wm.LoadAssetsConfig(c)
+	wm.Api.Debug = true
 	return wm
 }
 
@@ -79,7 +80,7 @@ func TestWalletManager_GetBlock(t *testing.T) {
 
 func TestWalletManager_GetTransaction(t *testing.T) {
 	wm := testNewWalletManager()
-	r, err := wm.Api.GetTransaction("042308511b749ef48db1c76e0301e5a80df911c034dba97b1fcc89b4542e0b40")
+	r, err := wm.Api.GetTransaction("4f6ad5ea52210aa5db9269a7cbb513851b00234cf7030afe089a868c96f480b8")
 	if err != nil {
 		t.Errorf("unexpected error: %v", err)
 		return
